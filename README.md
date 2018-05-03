@@ -1,6 +1,6 @@
-# IMSAFE
+## IMSAFE
 
-## Specification
+### Specification
 
 
 * Front-end
@@ -16,20 +16,20 @@
 
     * Python 3.5.0+
 
-    * Flask 0.17.0+
+* Flask 0.17.0+
 
-## Installation && Execution
+### Installation && Execution
 
 
-    * Front-end
+* Front-end
 
-        * 1)yarn install
+    * 1)yarn install
 
-        * 2)yarn run watch
+    * 2)yarn run watch
 
-    * Back-end
+* Back-end
 
-        * 1)pip install -r requirements.txt
+    * 1)pip install -r requirements.txt
 
-        * 2)python dashboard.py or FLASK_APP=dashboard.py flask run
+    * 2)python dashboard.py or FLASK_APP=dashboard.py flask run
 
