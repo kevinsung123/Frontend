@@ -4,6 +4,9 @@
 /.cache/
 /**/*.map
 
-
+### IntelliJ ###
 .idea
 .logs
+.iml
+
+/frontend.iml
