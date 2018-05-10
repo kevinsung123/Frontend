@@ -11,7 +11,7 @@ class App extends React.Component {
         <div id="main_wrapper" >
           <Header />
           <div id="section">
-            <Menu />
+            {/* <Menu /> */}
             <Content />
           </div> 
         </div>
