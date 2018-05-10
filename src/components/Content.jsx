@@ -6,7 +6,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {MainPage} from '/pages/MainPage';
 import {PatientSearchPage} from '/pages/PatientSearchPage'
-import {PatientSearchList, PatientsDetail, PatientSearchTable} from './Patients';
+import {PatientSearchList, PatientDetail, PatientSearchTable} from './Patients';
+import {RuleSearchPage} from '/pages/RuleSearchPage'
+import {RuleSearchList, RuleDetail, RuleSearchTable} from './Rules';
 //import {PatientSearchTable} from './Patients/PatientSearchTable';
 
 export class Content extends React.Component {
@@ -18,7 +20,13 @@ export class Content extends React.Component {
                 <Switch>
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/patients/search" component={PatientSearchPage}/>
-                    <Route exact path="/patients/add" component={PatientsDetail} />
+                    <Route exact path="/patients/add" component={PatientDetail} />
+
+                </Switch>
+                <Switch>
+                    <Route exact path="/" component={MainPage} />
+                    <Route exact path="/rules/search" component={RuleSearchPage}/>
+                    <Route exact path="/rules/add" component={RuleDetail} />
 
                 </Switch>
                 </MuiThemeProvider>

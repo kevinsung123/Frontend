@@ -1,5 +1,5 @@
 import PatientSearchList from './PatientSearchList'
-import PatientsDetail from './PatientsDetail'
+import PatientDetail from './PatientDetail'
 import PatientSearchTable from './PatientSearchTable'
 
-export {PatientSearchTable, PatientSearchList, PatientsDetail}
+export {PatientSearchTable, PatientSearchList, PatientDetail}
