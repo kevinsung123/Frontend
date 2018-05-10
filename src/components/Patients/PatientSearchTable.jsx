@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 
 const style = {
     height: '100%',
-    width: '100%',
+    width: '70%',
     margin: 20,
     textAlign: 'center',
 

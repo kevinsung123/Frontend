@@ -5,11 +5,13 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {MainPage} from '/pages/MainPage';
+
 import {PatientSearchPage} from '/pages/PatientSearchPage'
-import {PatientSearchList, PatientDetail, PatientSearchTable} from './Patients';
+import {PatientAddPage} from '/pages/PatientAddPage' 
+
 import {RuleSearchPage} from '/pages/RuleSearchPage'
 import {RuleSearchList, RuleDetail, RuleSearchTable} from './Rules';
-import {PatientAddForm} from './Patients/PatientAddForm';
+
 
 export class Content extends React.Component {
     render() {
@@ -20,7 +22,7 @@ export class Content extends React.Component {
                 <Switch>
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/patients/search" component={PatientSearchPage}/>
-                    <Route exact path="/patients/add" component={PatientAddForm} />
+                    <Route exact path="/patients/add" component={PatientAddPage} />
 
                 </Switch>
                 <Switch>
