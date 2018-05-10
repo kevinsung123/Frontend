@@ -18,7 +18,7 @@ const history = createBrowserHistory();
 ReactDOM.render(
 
     <Router history={history}>
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       <App />
     </MuiThemeProvider>
     </Router>,

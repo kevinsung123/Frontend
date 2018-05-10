@@ -9,21 +9,7 @@ import 'grommet/grommet.min.css'
 export default class PatientDetail extends React.Component {
     render() {
         return (
-            <div id="patient-detail">
-                <div id="patient-view">
-                    <div id="profile">
-                    </div>
-                    <div id="description">
-                        <div className="description-line"></div>
-                        <div className="description-line empty-line"></div>
-                        <div className="description-line empty-line"></div>
-                        <div className="description-line"></div>
-                        <div className="description-line"></div>
-                        <div className="description-line"></div>
-                        <div className="description-line"></div>
-                    </div>
-                </div>
-                <br/><br/>
+       
                 <div id="diagnostic-info">
                     <Tabs>
                         <Tab title='DETAIL'>
@@ -48,7 +34,7 @@ export default class PatientDetail extends React.Component {
                         </Tab>
                     </Tabs>
                 </div>
-            </div>
+           
         )
     }
 }

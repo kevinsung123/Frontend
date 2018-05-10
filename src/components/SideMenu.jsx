@@ -1,8 +1,9 @@
+
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 
 
-export class Menu extends React.Component {
+export class SideMenu extends React.Component {
     render() {
         const activeStyle = {
             color: "blue",
@@ -42,4 +43,4 @@ export class Menu extends React.Component {
         )
     }
 }
-
+  

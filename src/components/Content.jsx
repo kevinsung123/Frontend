@@ -9,7 +9,7 @@ import {PatientSearchPage} from '/pages/PatientSearchPage'
 import {PatientSearchList, PatientDetail, PatientSearchTable} from './Patients';
 import {RuleSearchPage} from '/pages/RuleSearchPage'
 import {RuleSearchList, RuleDetail, RuleSearchTable} from './Rules';
-//import {PatientSearchTable} from './Patients/PatientSearchTable';
+import {PatientAddForm} from './Patients/PatientAddForm';
 
 export class Content extends React.Component {
     render() {
@@ -20,7 +20,7 @@ export class Content extends React.Component {
                 <Switch>
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/patients/search" component={PatientSearchPage}/>
-                    <Route exact path="/patients/add" component={PatientDetail} />
+                    <Route exact path="/patients/add" component={PatientSearchPage} />
 
                 </Switch>
                 <Switch>

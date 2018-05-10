@@ -10,8 +10,8 @@
 						"node-sass": "^4.9.0",
 						"normalize-styl": "^4.1.1",
 						"parcel-bundler": "^1.7.1",
-						"react": "^15.4.0 || ^16.0.0",
-						"react-dom": "^15.4.0 || ^16.0.0",
+						"react": "^16.0.0-0",
+						"react-dom": "^16.0.0-0",
 						"redux-devtools": "^3.4.1",
 						"sass": "^1.0.0-beta.4"
 			},
@@ -41,6 +41,7 @@
 						"react-redux": "^5.0.6",
 						"react-router-dom": "^4.2.2",
 						"react-sidenav": "^2.1.2",
+						"react-tap-event-plugin": "^3.0.2",
 						"react-treebeard": "^2.1.0",
 						"react-treeview-component": "^0.1.2",
 						"redux": "^3.7.2",
