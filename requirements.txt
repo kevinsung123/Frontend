@@ -1,8 +1,0 @@
-Flask==1.0
-flask-sqlalchemy==2.3.0
-flask-migrate==2.1.1
-flask-restful==0.3.6
-requests==2.18.4
-psycopg2==2.7.3.1
-gunicorn==19.6.0
-python-dotenv==0.8.2
