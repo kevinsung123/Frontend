@@ -20,7 +20,7 @@ export class Content extends React.Component {
                 <Switch>
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/patients/search" component={PatientSearchPage}/>
-                    <Route exact path="/patients/add" component={PatientSearchPage} />
+                    <Route exact path="/patients/add" component={PatientAddForm} />
 
                 </Switch>
                 <Switch>
