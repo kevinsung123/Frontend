@@ -1,7 +1,5 @@
 import * as React from 'react'
-
 import 'bootstrap/dist/css/bootstrap-grid.css'
-
 import Paper from 'material-ui/Paper';
 
 const STATS = [
@@ -20,9 +18,26 @@ const STATS = [
 ]
 
 export class MainPage extends React.Component {
+    constructor(){
+        super();
+
+        this.state = {
+             color_black: true
+        }
+   }
+
+   changePage(){
+        window.open('/patients/add', '_self')
+   }
+
     render() {
         return (
             <Paper>
+                <div>
+              <button onClick={this.changePage.bind(this)}>
+                환자 추가
+              </button>
+        </div>
             <div>
                 <div className="table-head row">
                     <div className='col-lg-1'></div>
