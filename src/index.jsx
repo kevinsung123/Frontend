@@ -6,7 +6,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 //import 'bootstrap';
 
 import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
@@ -24,5 +24,5 @@ ReactDOM.render(
     </Router>,
   document.getElementById('react-app')
 );
-registerServiceWorker();
+
     
