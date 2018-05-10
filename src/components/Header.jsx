@@ -60,7 +60,7 @@ export class Header extends React.Component {
 
                 <Toolbar>
                     <ToolbarGroup>
-                        <ToolbarTitle text="Main" />
+                        <Link expect to="/"><ToolbarTitle text="Main" /></Link>
                         <ToolbarSeparator />
                         <div>
                             <RaisedButton 
