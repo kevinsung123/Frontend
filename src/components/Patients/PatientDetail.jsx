@@ -6,7 +6,7 @@ import Paragraph from 'grommet/components/Paragraph';
 
 import 'grommet/grommet.min.css'
 
-export default class PatientsDetail extends React.Component {
+export default class PatientDetail extends React.Component {
     render() {
         return (
             <div id="patient-detail">
