@@ -7,8 +7,9 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import { GridList, GridTile } from 'material-ui/GridList';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import img from 'react-image';
-
+import Img from 'react-image';
+import avatar from './img/marc.jpg';
+injectTapEventPlugin();
 const style = {
   height: '100%',
   width: '70%',
@@ -33,112 +34,105 @@ export default class PatientAddForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      pname: "",
       age: "",
-      birthday: ""
-      // prehabilitation={     
-      //     pt_class="",  
-      //     pt_new="", 
-      //     stability="",  
-      //     oral_ingestion="",  
-      //     ADL="",
-      //     KTIS="",
-      //     VAS="",
-      //     MBI="",
-      //     MAS="",
-      //     MMT="",
-      //     BBS="",
-      //     ROM="",
-      //     Onset=""
-      // },
-      // homecare={            //가정간호
-      //     hc_class="",        //가정간호환자구분
-      //     vital_sign="",       //활력증상
-      //     consciousness="",    //의식수준
-      //     nutrition="",        //영양
-      //     urination="",       //배뇨 및 배변
-      //     breathdegree="",    //호흡정도
-      //     dailyliving="",     //일상생활수행
-      //     emotionalstate="",  //정서상태
-      // }
+      birthday: "",
+      prehabilitation:{     
+          pt_class:"",  
+          pt_new:"", 
+          stability:"",  
+          oral_ingestion:"",  
+          ADL:"",
+          KTIS:"",
+          VAS:"",
+          MBI:"",
+          MAS:"",
+          MMT:"",
+          BBS:"",
+          ROM:"",
+          Onset:""
+      },
+      homecare:{            //가정간호
+          hc_class:"",        //가정간호환자구분
+          vital_sign:"",       //활력증상
+          consciousness:"",    //의식수준
+          nutrition:"",        //영양
+          urination:"",       //배뇨 및 배변
+          breathdegree:"",    //호흡정도
+          dailyliving:"",     //일상생활수행
+          emotionalstate:"",  //정서상태
+      }
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+   
   }
 
 
 
 
   change = e => {
-    this.props.onChange({ [e.tagrget.name]: e.target.value })
+    this.props.onChange({ [e.target.name]: e.target.value })
     this.setState({
-      [e.tagrget.name]: e.tagrget.value
+      [e.target.name]: e.target.value
     });
   };
   onSubmit = e => {
     e.preventDefault();
     this.setState({
-      name: "",
+      pname: "",
       age: "",
       birthday: ""
 
     });
     this.props.onChange({
-      name: "",
+      pname: "",
       age: "",
       birthday: ""
     })
 
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
+ 
 
 
   render() {
     return (
       <div style={gridstyles.root}>
         <Paper style={style} zDepth={4} rounded={true}>
-          <GridList>
-           
-            <img 
-            width="200px" 
-            height="200px" 
-            src="/src/img/marc.jpg"
-            decode={false}
-            />
+        <form>
+          <GridList>  
+            <img
+            width="200px"
+            height="200px"
+              src="https://creativetimofficial.github.io/material-dashboard-react/static/media/marc.8880a65c.jpg"
+            /> 
+            <br/>
             <TextField
-              name="name"
-              hintText="이름"
+              pname="name"
               floatingLabelText="이름"
-              value={this.setState.name}
+              value={this.setState.pname}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
             <TextField
               name="age"
-              hintText="나이"
+              hintText=""
               floatingLabelText="나이"
-              value={this.setState.name}
+              value={this.setState.age}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
             <TextField
               name="brithday"
-              hintText="생일"
-              floatingLabelText="생일"
-              value={this.setState.name}
+              hintText=""
+              floatingLabelText="생년월일"
+              value={this.setState.birthday}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
             <br />
+            <button onClick={e => this.onSubmit(e)}>환자등록</button>
           </GridList>
+          </form>
         </Paper>
       </div>
     );
