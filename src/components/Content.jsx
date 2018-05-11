@@ -11,7 +11,7 @@ import {PatientAddPage} from '/pages/PatientAddPage'
 
 import {RuleSearchPage} from '/pages/RuleSearchPage'
 import {RuleSearchList, RuleDetail, RuleSearchTable} from './Rules';
-
+import AddRule from './Rules/AddRule'
 
 export class Content extends React.Component {
     render() {
@@ -23,12 +23,8 @@ export class Content extends React.Component {
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/patients/search" component={PatientSearchPage}/>
                     <Route exact path="/patients/add" component={PatientAddPage} />
-
-                </Switch>
-                <Switch>
-                    <Route exact path="/" component={MainPage} />
                     <Route exact path="/rules/search" component={RuleSearchPage}/>
-                    <Route exact path="/rules/add" component={RuleDetail} />
+                    <Route exact path="/rules/add" component={AddRule} />
 
                 </Switch>
                 </MuiThemeProvider>

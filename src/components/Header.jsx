@@ -126,31 +126,3 @@ export class Header extends React.Component {
         );
     }
 }
-
-
-/*<li><NavLink expect to="/patients/search" activeStyle={activeStyle}>검색</NavLink></li>
-<Route exact path="/" component={MainPage} />
-                    <Route exact path="/patients/search" component={PatientSearchPage}/>
-                    <Route exact path="/patients/add" component={PatientsDetail} />
-
-
- <AppBar
-                    title={
-                        <Link expect to="/">
-                        <span style={this.titleStyle}
-                              onClick={this.titleClick}>
-                            IMSAFE
-                        </span>
-                        </Link>
-                    }
-                >
-                    <NavLink expect to="/patients/add">
-                        <FlatButton label="환자" style={this.flatButtonStyle} />
-                    </NavLink>
-
-                    <NavLink expect to="/rules/add">
-                        <FlatButton label="규칙" style={this.flatButtonStyle} />
-                    </NavLink>
-                </AppBar>
-
-                    */
