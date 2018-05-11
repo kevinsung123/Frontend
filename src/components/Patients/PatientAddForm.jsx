@@ -9,10 +9,12 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Img from 'react-image';
 import avatar from './img/marc.jpg';
-injectTapEventPlugin();
+import RaisedButton from 'material-ui/RaisedButton';
+
+//injectTapEventPlugin();
 const style = {
   height: '100%',
-  width: '70%',
+  width: '80%',
   margin: 20,
   textAlign: 'center',
 
@@ -34,7 +36,7 @@ export default class PatientAddForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pname: "",
+      patientname: "",
       age: "",
       birthday: "",
       prehabilitation:{     
@@ -64,7 +66,7 @@ export default class PatientAddForm extends React.Component {
       }
     };
 
-   
+
   }
 
 
@@ -79,37 +81,36 @@ export default class PatientAddForm extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     this.setState({
-      pname: "",
+      patientname: "",
       age: "",
       birthday: ""
 
     });
     this.props.onChange({
-      pname: "",
+      patientname: "",
       age: "",
       birthday: ""
     })
 
   }
- 
+
 
 
   render() {
     return (
       <div style={gridstyles.root}>
         <Paper style={style} zDepth={4} rounded={true}>
-        <form>
-          <GridList>  
+
+          <GridList>
             <img
-            width="200px"
-            height="200px"
+              width="200px"
+              height="150px"
               src="https://creativetimofficial.github.io/material-dashboard-react/static/media/marc.8880a65c.jpg"
-            /> 
-            <br/>
+            />
             <TextField
-              pname="name"
+              name="patientname"
               floatingLabelText="이름"
-              value={this.setState.pname}
+              value={this.state.patientname}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
@@ -117,22 +118,25 @@ export default class PatientAddForm extends React.Component {
               name="age"
               hintText=""
               floatingLabelText="나이"
-              value={this.setState.age}
+              value={this.state.age}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
+
             <TextField
-              name="brithday"
+              name="birthday"
               hintText=""
               floatingLabelText="생년월일"
-              value={this.setState.birthday}
+              value={this.state.birthday}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
             <br />
-            <button onClick={e => this.onSubmit(e)}>환자등록</button>
+
+            <RaisedButton label="환자등록" onClick={e => this.onSubmit(e)} primary />
+
           </GridList>
-          </form>
+
         </Paper>
       </div>
     );
