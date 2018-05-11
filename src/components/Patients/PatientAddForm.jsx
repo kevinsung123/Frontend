@@ -10,6 +10,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import Img from 'react-image';
 import avatar from './img/marc.jpg';
 import RaisedButton from 'material-ui/RaisedButton';
+import PatientAddTab from './PatientAddTab';
 
 //injectTapEventPlugin();
 const style = {
@@ -39,30 +40,30 @@ export default class PatientAddForm extends React.Component {
       patientname: "",
       age: "",
       birthday: "",
-      prehabilitation:{     
-          pt_class:"",  
-          pt_new:"", 
-          stability:"",  
-          oral_ingestion:"",  
-          ADL:"",
-          KTIS:"",
-          VAS:"",
-          MBI:"",
-          MAS:"",
-          MMT:"",
-          BBS:"",
-          ROM:"",
-          Onset:""
+      prehabilitation: {
+        pt_class: "",
+        pt_new: "",
+        stability: "",
+        oral_ingestion: "",
+        ADL: "",
+        KTIS: "",
+        VAS: "",
+        MBI: "",
+        MAS: "",
+        MMT: "",
+        BBS: "",
+        ROM: "",
+        Onset: ""
       },
-      homecare:{            //가정간호
-          hc_class:"",        //가정간호환자구분
-          vital_sign:"",       //활력증상
-          consciousness:"",    //의식수준
-          nutrition:"",        //영양
-          urination:"",       //배뇨 및 배변
-          breathdegree:"",    //호흡정도
-          dailyliving:"",     //일상생활수행
-          emotionalstate:"",  //정서상태
+      homecare: {            //가정간호
+        hc_class: "",        //가정간호환자구분
+        vital_sign: "",       //활력증상
+        consciousness: "",    //의식수준
+        nutrition: "",        //영양
+        urination: "",       //배뇨 및 배변
+        breathdegree: "",    //호흡정도
+        dailyliving: "",     //일상생활수행
+        emotionalstate: "",  //정서상태
       }
     };
 
@@ -132,11 +133,9 @@ export default class PatientAddForm extends React.Component {
               floatingLabelFixed={true}
             />
             <br />
-
             <RaisedButton label="환자등록" onClick={e => this.onSubmit(e)} primary />
-
           </GridList>
-
+  
         </Paper>
       </div>
     );
