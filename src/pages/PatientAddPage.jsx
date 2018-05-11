@@ -9,8 +9,8 @@ export class PatientAddPage extends React.Component {
     onChange = updatedValue => {
         this.setState({
             fields: {
-                // ...this.state.fields,
-                // ...updatedValue
+                 ...this.state.fields,
+                 ...updatedValue
             }
         });
     };
