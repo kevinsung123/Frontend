@@ -14,8 +14,8 @@ import PatientAddTab from './PatientAddTab';
 
 //injectTapEventPlugin();
 const style = {
-  height: '100%',
-  width: '80%',
+  height: '50%',
+  width: '50%',
   margin: 20,
   textAlign: 'center',
 
@@ -28,8 +28,8 @@ const gridstyles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: 500,
-    height: 450,
+    width: 300,
+    height: 250,
     overflowY: 'auto',
   },
 };
@@ -74,25 +74,19 @@ export default class PatientAddForm extends React.Component {
 
 
   change = e => {
-    this.props.onChange({ [e.target.name]: e.target.value })
     this.setState({
       [e.target.name]: e.target.value
     });
   };
   onSubmit = e => {
     e.preventDefault();
+    this.props.onSubmit(this.state);
     this.setState({
       patientname: "",
       age: "",
       birthday: ""
-
     });
-    this.props.onChange({
-      patientname: "",
-      age: "",
-      birthday: ""
-    })
-
+   
   }
 
 
@@ -135,7 +129,7 @@ export default class PatientAddForm extends React.Component {
             <br />
             <RaisedButton label="환자등록" onClick={e => this.onSubmit(e)} primary />
           </GridList>
-  
+
         </Paper>
       </div>
     );

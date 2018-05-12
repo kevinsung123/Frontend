@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {Router} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
 
 //import 'bootstrap';
@@ -16,13 +16,11 @@ import './app.sass'
 const history = createBrowserHistory();
 
 ReactDOM.render(
-
-    <Router history={history}>
+  <BrowserRouter>
     <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       <App />
     </MuiThemeProvider>
-    </Router>,
+  </BrowserRouter>,
   document.getElementById('react-app')
 );
 
-    

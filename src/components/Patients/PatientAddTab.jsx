@@ -1,6 +1,21 @@
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
-import { PatientSearchList, PatientDetail, PatientSearchTable, PatientAddForm } from '/components/Patients';
+import { Tabs, Tab } from 'material-ui/Tabs';
+import Paper from 'material-ui/Paper';
+import {
+  PatientSearchList,
+  PatientDetail,
+  PatientSearchTable, 
+  PatientAddForm,
+  PatientAddTable
+} from '/components/Patients';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 const styles = {
   headline: {
@@ -10,44 +25,39 @@ const styles = {
     fontWeight: 400,
   },
 };
-
 export default class PatientAddTab extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      value: 'a',
+
+      value: 'a'
     };
+
   }
 
- 
-onChange = updatedValue => {
-    this.setState({
-        fields: {
-            ...this.state.fields,
-            ...updatedValue
-        }
-    });
-};
+
 
 
   handleChange = (value) => {
     this.setState({
-      value: value,
+      value: 'a',
     });
   };
 
   render() {
     return (
+
+
       <Tabs
         value={this.state.value}
-        onChange={this.handleCha보nge}
+        onChange={this.handleChange}
       >
         <Tab label="환자상세정보" value="a">
           <div>
             <h2 style={styles.headline}></h2>
             <p>
-              환자상세정보
+              
             </p>
           </div>
         </Tab>
@@ -55,11 +65,12 @@ onChange = updatedValue => {
           <div>
             <h2 style={styles.headline}></h2>
             <p>
-                추천서비스
+              추천서비스
             </p>
           </div>
         </Tab>
       </Tabs>
+
     );
   }
 }
