@@ -1,7 +1,4 @@
 
-import TableHeader from 'grommet/components/TableHeader';
-import Table from 'grommet/components/Table';
-import TableRow from 'grommet/components/TableRow';
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
@@ -14,7 +11,7 @@ import PatientAddTab from './PatientAddTab';
 
 //injectTapEventPlugin();
 const style = {
-  height: '50%',
+  height: '15%',
   width: '50%',
   margin: 20,
   textAlign: 'center',
@@ -28,8 +25,8 @@ const gridstyles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: 300,
-    height: 250,
+    width: 150,
+    height: 100,
     overflowY: 'auto',
   },
 };
@@ -94,7 +91,7 @@ export default class PatientAddForm extends React.Component {
   render() {
     return (
       <div style={gridstyles.root}>
-        <Paper style={style} zDepth={4} rounded={true}>
+        <Paper style={style} zDepth={2} rounded={true}>
 
           <GridList>
             <img
