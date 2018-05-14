@@ -8,14 +8,7 @@ import {
   PatientAddForm,
   PatientAddTable
 } from '/components/Patients';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
+
 
 const styles = {
   headline: {

@@ -11,9 +11,9 @@ export default class Condition extends React.Component {
         super(props);
 
         this.state = {
-            <div>
+            // <div>
 
-            </div>
+            // </div>
         };
     }
 

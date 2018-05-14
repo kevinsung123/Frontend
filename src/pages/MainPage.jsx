@@ -24,27 +24,27 @@ export class MainPage extends React.Component {
         return (
             <Paper>
             <div>
-                <div className="table-head row">
-                    <div className='col-lg-1'></div>
-                    <div className='table-cell col-lg-2'>서비스명</div>
-                    <div className='table-cell col-lg-2'>태스크명</div>
-                    <div className='table-cell col-lg-2'>예약 대기 환자 수</div>
-                    <div className='table-cell col-lg-2'>진료 대기 수</div>
-                    <div className='table-cell col-lg-2'>진행중 수</div>
+                <div class="table-head row">
+                    <div class='col-lg-1'></div>
+                    <div class='table-cell col-lg-2'>서비스명</div>
+                    <div class='table-cell col-lg-2'>태스크명</div>
+                    <div class='table-cell col-lg-2'>예약 대기 환자 수</div>
+                    <div class='table-cell col-lg-2'>진료 대기 수</div>
+                    <div class='table-cell col-lg-2'>진행중 수</div>
                 </div>
-                <div className="table-body">
+                <div class="table-body">
                     { STATS.map(data =>
-                        <div className="row ">
-                            <div className="col-lg-1"></div>
-                            <div className='col-lg-2 row-id'>{data.service_name}</div>
-                            <div className='col-lg-8 nested-wrap'>
+                        <div class="row ">
+                            <div class="col-lg-1"></div>
+                            <div class='col-lg-2 row-id'>{data.service_name}</div>
+                            <div class='col-lg-8 nested-wrap'>
                             { 
                                 data.tasks.map(col => 
-                                    (<div className={"row " + (col.selected ? 'selected-col' : 'idle-col')}>
-                                        <div className='table-cell col-lg-3'>{col.task_name}</div>
-                                        <div className='table-cell col-lg-3'>{col.reserved}</div>
-                                        <div className='table-cell col-lg-3'>{col.waiting}</div>
-                                        <div className='table-cell col-lg-3'>{col.doing}</div>
+                                    (<div class={"row " + (col.selected ? 'selected-col' : 'idle-col')}>
+                                        <div class='table-cell col-lg-3'>{col.task_name}</div>
+                                        <div class='table-cell col-lg-3'>{col.reserved}</div>
+                                        <div class='table-cell col-lg-3'>{col.waiting}</div>
+                                        <div class='table-cell col-lg-3'>{col.doing}</div>
                                     </div>)
                                 ) 
                             }</div>
