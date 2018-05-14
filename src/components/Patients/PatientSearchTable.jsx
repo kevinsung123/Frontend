@@ -12,7 +12,6 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import {
     PatientAddTab,
-    PatientDetail,
     PatientAddForm,
     PatientAddTable
 } from '/components/Patients';
@@ -21,37 +20,45 @@ import FlatButton from 'material-ui/FlatButton';
 const style = {
     height: '100%',
     width: '70%',
-    margin: 20,
+    margin: "auto",
     textAlign: 'center',
 
     root: {
         display: 'flex',
-        flexWrap: 'wrap',
         justifyContent: 'space-around',
         margin: "auto"
     },
     card:{
-        display: "inline-block",
+        width: "20%",
+        display: "flex",
         margin: "auto",
+        flexWrap: 'wrap',
         lineHeight: "1.5em"
     },
     cardheader: {
-        display: "inline-block",
+        display: "flex",
         margin: "auto",
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        fontWeight: "500",
+        fontWeight: "300",
         lineHeight: "1.5em",
         width: "100%",
         fontSize: "2.125em",
         boxShadow: "0 1px 4px 0 rgba(0, 0, 0, 0.14)",
         borderRadius: "3px",
         color: "white",
-        background: "#20c997",
+        background: "#00bcd4",
     }
 
 
 };
-
+const row = (x, i, header) =>
+    <TableRow key={'tr-${i}'}>
+        {header.map((y, k) =>
+            <TableRowColumn key={'trc-${k}'}>
+                {x[y.prop]}
+            </TableRowColumn>
+        )}
+    </TableRow>;
 export default class PatientSearchTable extends React.Component {
     state = {
         data: [
@@ -104,6 +111,8 @@ export default class PatientSearchTable extends React.Component {
                         />
                     </CardText>
                 </Card>
+                <br/>
+                <br/>
                 <Paper style={style} zDepth={4} rounded={false} >
                     <PatientAddTable
                         data={

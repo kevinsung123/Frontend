@@ -3,7 +3,6 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import Paper from 'material-ui/Paper';
 import {
   PatientSearchList,
-  PatientDetail,
   PatientSearchTable, 
   PatientAddForm,
   PatientAddTable

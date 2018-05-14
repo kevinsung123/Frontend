@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PatientDetail, PatientSearchTable } from '/components/Patients';
+import {  PatientSearchTable } from '/components/Patients';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
