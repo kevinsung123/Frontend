@@ -12,8 +12,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import Paper from 'material-ui/Paper';
 const style = {
-    height: '30%',
-    width: '50%',
+    height: '50%',
+    width: '90%',
     margin: 20,
     textAlign: 'center',
     root: {

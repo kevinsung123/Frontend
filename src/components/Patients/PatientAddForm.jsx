@@ -12,8 +12,7 @@ import PatientAddTab from './PatientAddTab';
 //injectTapEventPlugin();
 const style = {
   height: '15%',
-  width: '50%',
-  margin: 20,
+  width: '90%',
   textAlign: 'center',
 
 };
@@ -24,9 +23,9 @@ const gridstyles = {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
   },
-  gridList: {
-    width: 150,
-    height: 100,
+  gridList: { 
+    color:"black",
+    fontWeight:"bold",
     overflowY: 'auto',
   },
 };
@@ -37,7 +36,7 @@ export default class PatientAddForm extends React.Component {
       patientname: "",
       age: "",
       birthday: "",
-      prehabilitation: {
+      // prehabilitation: {
         pt_class: "",
         pt_new: "",
         stability: "",
@@ -50,9 +49,9 @@ export default class PatientAddForm extends React.Component {
         MMT: "",
         BBS: "",
         ROM: "",
-        Onset: ""
-      },
-      homecare: {            //가정간호
+        Onset: "",
+      // },
+      // homecare: {            //가정간호
         hc_class: "",        //가정간호환자구분
         vital_sign: "",       //활력증상
         consciousness: "",    //의식수준
@@ -61,7 +60,7 @@ export default class PatientAddForm extends React.Component {
         breathdegree: "",    //호흡정도
         dailyliving: "",     //일상생활수행
         emotionalstate: "",  //정서상태
-      }
+      // }
     };
 
 
@@ -92,8 +91,7 @@ export default class PatientAddForm extends React.Component {
     return (
       <div style={gridstyles.root}>
         <Paper style={style} zDepth={2} rounded={true}>
-
-          <GridList>
+          <GridList style={gridstyles.gridList} cols="6" cellsHeight="auto">
             <img
               width="200px"
               height="150px"
@@ -123,7 +121,62 @@ export default class PatientAddForm extends React.Component {
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
-            <br />
+            <TextField
+              name="pt_class"
+              hintText="ex) CNS"
+              floatingLabelText="방문재활 환자구분 "
+              value={this.state.pt_class}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="pt_new"
+              hintText="ex) Y or N"
+              floatingLabelText="방문재활 신규여부 "
+              value={this.state.pt_class}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="ADL"
+              hintText="ex) < 35"
+              floatingLabelText="ADL"
+              value={this.state.ADL}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="KTIS"
+              hintText="ex) < 16"
+              floatingLabelText="K-TIS"
+              value={this.state.KTIS}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="VAS"
+              hintText=" ex) >= 3"
+              floatingLabelText="VAS"
+              value={this.state.VAS}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="MBI"
+              hintText="ex) >= 3"
+              floatingLabelText="MBI "
+              value={this.state.MBI}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="MMT"
+              hintText="ex) >= 3"
+              floatingLabelText="MMT"
+              value={this.state.MMT}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
             <RaisedButton label="환자등록" onClick={e => this.onSubmit(e)} primary />
           </GridList>
 
