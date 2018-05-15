@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import AddCondition from './AddCondition';
+import Conditions from './AddCondition';
 
 export default class AddRule extends React.Component {
 
@@ -17,10 +17,10 @@ export default class AddRule extends React.Component {
         super(props);
 
         this.state = {
-            serviceValue: 0
+            serviceValue: 0,
+            conditions: [{propertyValue:0, operatorValue:0}],
         };
 
-		this.conditions = [new AddCondition()];
     }
 
     handleChange = (event, index, value) => {
@@ -28,8 +28,10 @@ export default class AddRule extends React.Component {
 	};
 
     clickAddNewCondition = () => {
-    	console.log('Click Add New Condition');
-    	this.conditions.push(new AddCondition())
+    	this.setState({
+			...this.state,
+			conditions: [...this.state.conditions, {propertyValue: 0, operatorValue: 0}],
+		});
 	};
 
     //TODO 서비스 할당에서 하드코딩된 서비스 리스트(MenuItem)들은 실제 서버로부터 받아야한다.
@@ -76,9 +78,9 @@ export default class AddRule extends React.Component {
 
 						<TableRow>
 							<TableRowColumn colSpan={3}>
-								{this.conditions.map(
+								{this.state.conditions.map(
 
-									(condition) => condition.render()
+									(condition, i) => <Conditions key={'condition'+i} {...condition} />
 
 								)}
 							</TableRowColumn>

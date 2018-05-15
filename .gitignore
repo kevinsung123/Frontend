@@ -10,3 +10,6 @@
 .iml
 
 /frontend.iml
+
+### React ###
+static/js/app.css

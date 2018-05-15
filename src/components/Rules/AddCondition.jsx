@@ -11,9 +11,8 @@ export default class Condition extends React.Component {
         super(props);
 
         this.state = {
-            // <div>
-
-            // </div>
+            propertyValue: props.propertyValue,
+            operatorValue: props.operatorValue,
         };
     }
 
