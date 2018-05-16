@@ -58,6 +58,7 @@ export class Header extends React.Component {
         return (
             <div class="container width-max-100">
 
+
                 <Toolbar>
                     <ToolbarGroup>
                         <Link expect to="/"><ToolbarTitle text="Home" /></Link>

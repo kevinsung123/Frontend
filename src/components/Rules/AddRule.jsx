@@ -9,7 +9,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+
+import axios from 'axios';
+
 import Conditions from './AddCondition';
+
 
 export default class AddRule extends React.Component {
 
@@ -18,9 +22,8 @@ export default class AddRule extends React.Component {
 
         this.state = {
             serviceValue: 0,
-            conditions: [{propertyValue:0, operatorValue:0}],
+            conditions: [{order: 0, propertyValue:0, operatorValue:0}],
         };
-
     }
 
     handleChange = (event, index, value) => {
@@ -30,14 +33,43 @@ export default class AddRule extends React.Component {
     clickAddNewCondition = () => {
     	this.setState({
 			...this.state,
-			conditions: [...this.state.conditions, {propertyValue: 0, operatorValue: 0}],
+			conditions: [...this.state.conditions, {order: this.state.conditions.length, propertyValue: 0, operatorValue: 0}],
 		});
+
+	};
+
+    handleChangeCondition = (order, propertyValue, operatorValue) => {
+		let newConditions = this.state.conditions;
+		newConditions[order] = {
+			...newConditions[order],
+			propertyValue,
+			operatorValue,
+		};
+
+		this.setState({
+			...this.state,
+			conditions: newConditions,
+		});
+
+	};
+
+    clickSubmitButton = () => {
+
+		axios.post('/rule', {
+			...this.state,
+        }).then((response) => {
+        	console.log(response);
+		}).catch((error) => {
+			console.log(error);
+		})
+
 	};
 
     //TODO 서비스 할당에서 하드코딩된 서비스 리스트(MenuItem)들은 실제 서버로부터 받아야한다.
     render() {
         return (
         	<div className="container">
+
 			  	<Table>
 					<TableBody
 						displayRowCheckbox={false}
@@ -80,7 +112,11 @@ export default class AddRule extends React.Component {
 							<TableRowColumn colSpan={3}>
 								{this.state.conditions.map(
 
-									(condition, i) => <Conditions key={'condition'+i} {...condition} />
+									(condition, i) =>
+										<Conditions
+											key={'condition_'+i}
+											changeCondition={this.handleChangeCondition}
+											{...condition} />
 
 								)}
 							</TableRowColumn>
@@ -96,6 +132,8 @@ export default class AddRule extends React.Component {
 
 				</TableBody>
 			  </Table>
+
+			  <RaisedButton label="Submit" onClick={this.clickSubmitButton} />
 			</div>
         )
     }

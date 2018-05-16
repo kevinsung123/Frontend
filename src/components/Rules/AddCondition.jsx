@@ -10,18 +10,23 @@ export default class Condition extends React.Component {
     constructor(props) {
         super(props);
 
+        this.order = this.props.order;
         this.state = {
-            propertyValue: props.propertyValue,
-            operatorValue: props.operatorValue,
+            propertyValue: this.props.propertyValue,
+            operatorValue: this.props.operatorValue,
         };
     }
 
     handlePropertyChange = (event, index, value) => {
-        this.setState({propertyValue: value})
+        this.setState({propertyValue: value}, () => {
+            this.props.changeCondition(this.order, this.state.propertyValue, this.state.operatorValue);
+        });
     };
 
     handleOperatorChange = (event, index, value) => {
-        this.setState({operatorValue: value})
+        this.setState({operatorValue: value}, () => {
+            this.props.changeCondition(this.order, this.state.propertyValue, this.state.operatorValue);
+        });
     };
 
 
