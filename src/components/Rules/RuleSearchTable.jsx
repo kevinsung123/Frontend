@@ -42,8 +42,8 @@ const row = (
         <TableRowColumn key={`trc-${k}`}>{x[y.prop]}</TableRowColumn>
       ))}
       <TableRowColumn>
-        <EditIcon onClick={() => startEditing(i)} />
-        <TrashIcon onClick={() => handleRemove(i)} />
+        <EditIcon disabled={true} /*onClick={() => startEditing(i)}*/ />
+        <TrashIcon disabled={true} /*onClick={() => handleRemove(i)}*/ />
       </TableRowColumn>
     </TableRow>
   );
