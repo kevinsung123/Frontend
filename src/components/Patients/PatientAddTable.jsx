@@ -18,7 +18,7 @@ const style = {
 const row = (x, i, header) =>
     <TableRow key={'tr-${i}'}>
         {header.map((y, k) =>
-            <TableRowColumn key={'trc-${k}'}>
+            <TableRowColumn key={'patient-trc-${k}'}>
                 {x[y.prop]}
             </TableRowColumn>
         )}
@@ -31,7 +31,7 @@ export default ({ data, header }) =>
             <TableHeader>
                 <TableRow>
                     {header.map((x, i) =>
-                        <TableHeaderColumn key={'thc-${i}'}>
+                        <TableHeaderColumn key={'patient-thc-${i}'}>
                             {x.name}
                         </TableHeaderColumn>
                     )}

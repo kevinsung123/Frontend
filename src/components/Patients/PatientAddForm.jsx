@@ -23,10 +23,12 @@ const gridstyles = {
     flexWrap: 'wrap',
     justifyContent: 'space-around',
   },
-  gridList: { 
-    color:"black",
-    fontWeight:"bold",
+  gridList: {
+    color: "black",
+    fontWeight: "bold",
     overflowY: 'auto',
+    padding: "10",
+    margin: "auto"
   },
 };
 export default class PatientAddForm extends React.Component {
@@ -37,29 +39,29 @@ export default class PatientAddForm extends React.Component {
       age: "",
       birthday: "",
       // prehabilitation: {
-        pt_class: "",
-        pt_new: "",
-        stability: "",
-        oral_ingestion: "",
-        ADL: "",
-        KTIS: "",
-        VAS: "",
-        MBI: "",
-        MAS: "",
-        MMT: "",
-        BBS: "",
-        ROM: "",
-        Onset: "",
+      pt_class: "",
+      pt_new: "",
+      stability: "",
+      oral_ingestion: "",
+      ADL: "",
+      KTIS: "",
+      VAS: "",
+      MBI: "",
+      MAS: "",
+      MMT: "",
+      BBS: "",
+      ROM: "",
+      Onset: "",
       // },
       // homecare: {            //가정간호
-        hc_class: "",        //가정간호환자구분
-        vital_sign: "",       //활력증상
-        consciousness: "",    //의식수준
-        nutrition: "",        //영양
-        urination: "",       //배뇨 및 배변
-        breathdegree: "",    //호흡정도
-        dailyliving: "",     //일상생활수행
-        emotionalstate: "",  //정서상태
+      hc_class: "",        //가정간호환자구분
+      vital_sign: "",       //활력증상
+      consciousness: "",    //의식수준
+      nutrition: "",        //영양
+      urination: "",       //배뇨 및 배변
+      breathdegree: "",    //호흡정도
+      dailyliving: "",     //일상생활수행
+      emotionalstate: "",  //정서상태
       // }
     };
 
@@ -82,7 +84,7 @@ export default class PatientAddForm extends React.Component {
       age: "",
       birthday: ""
     });
-   
+
   }
 
 
@@ -91,7 +93,7 @@ export default class PatientAddForm extends React.Component {
     return (
       <div style={gridstyles.root}>
         <Paper style={style} zDepth={2} rounded={true}>
-          <GridList style={gridstyles.gridList} cols="6" cellsHeight="auto">
+          <GridList style={gridstyles.gridList} cols='6'>
             <img
               width="200px"
               height="150px"
@@ -123,7 +125,7 @@ export default class PatientAddForm extends React.Component {
             />
             <TextField
               name="pt_class"
-              hintText="ex) CNS"
+              hintText="ex) CNS,낙상,통증.."
               floatingLabelText="방문재활 환자구분 "
               value={this.state.pt_class}
               onChange={e => this.change(e)}
@@ -174,6 +176,54 @@ export default class PatientAddForm extends React.Component {
               hintText="ex) >= 3"
               floatingLabelText="MMT"
               value={this.state.MMT}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="hr_class"
+              hintText="ex) = 비위관,위장루,정체도뇨관 etc"
+              floatingLabelText="환자구분"
+              value={this.state.hr_class}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="vital_sign"
+              hintText="ex) = level2"
+              floatingLabelText="활력증상"
+              value={this.state.vital_sign}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="nutrition"
+              hintText="ex) = level2"
+              floatingLabelText="영양"
+              value={this.state.nutrition}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="urination"
+              hintText="ex) = level2"
+              floatingLabelText="배뇨 및 배변"
+              value={this.state.urination}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+            <TextField
+              name="breathdegree"
+              hintText="ex) = level2"
+              floatingLabelText="호흡 및 정도"
+              value={this.state.breathdegree}
+              onChange={e => this.change(e)}
+              floatingLabelFixed={true}
+            />
+             <TextField
+              name="dailyliving"
+              hintText="ex) = level2"
+              floatingLabelText="일상생활수행"
+              value={this.state.breathdegree}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />

@@ -74,6 +74,71 @@ export class PatientAddPage extends React.Component {
                                                     prop: "birthday",
 
                                                 },
+                                                {
+                                name: "방문재활 환자구분",
+                                prop: "pt_class",
+
+                            },
+                            {
+                                name: "방문재활 신규여부",
+                                prop: "pt_new",
+
+                            },
+                            {
+                                name: "ADL",
+                                prop: "ADL",
+
+                            },
+                            {
+                                name: "KTIS",
+                                prop: "KTIS",
+
+                            },
+                            {
+                                name: "VAS",
+                                prop: "VAS",
+
+                            },
+                            {
+                                name: "MBI",
+                                prop: "MBI",
+
+                            },
+                            {
+                                name: "MMT",
+                                prop: "MMT",
+
+                            },
+                            {
+                                name: "가정간호 환자구분",
+                                prop: "hr_class",
+
+                            },
+                            {
+                                name: "활력증상",
+                                prop: "vital_sign",
+
+                            },
+                            {
+                                name: "영양",
+                                prop: "nutrition",
+
+                            },
+                            {
+                                name: "배뇨 및 배변",
+                                prop: "urination",
+
+                            },
+                            {
+                                name: "호흡 및 정도",
+                                prop: "breathdegree",
+
+                            },
+                            {
+                                name: "일상 생활 수행",
+                                prop: "dailyliving",
+
+                            },
 
                                             ]}
                                         />
