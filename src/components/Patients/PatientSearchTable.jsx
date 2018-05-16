@@ -13,10 +13,10 @@ import MenuItem from 'material-ui/MenuItem';
 import {
     PatientAddTab,
     PatientAddForm,
-    PatientAddTable
 } from '/components/Patients';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import SearchTable from './SearchTable';
 const style = {
     height: '100%',
     width: '70%',
@@ -51,14 +51,7 @@ const style = {
 
 
 };
-const row = (x, i, header) =>
-    <TableRow key={'tr-${i}'}>
-        {header.map((y, k) =>
-            <TableRowColumn key={'trc-${k}'}>
-                {x[y.prop]}
-            </TableRowColumn>
-        )}
-    </TableRow>;
+
 export default class PatientSearchTable extends React.Component {
     state = {
         data: [
@@ -113,8 +106,8 @@ export default class PatientSearchTable extends React.Component {
                 </Card>
                 <br/>
                 <br/>
-                <Paper style={style} zDepth={4} rounded={false} >
-                    <PatientAddTable
+                <Paper style={style} zDepth={2} rounded={false} >
+                    <SearchTable
                         data={
                             this.state.query
                                 ? this.state.data.filter(x =>
@@ -144,7 +137,7 @@ export default class PatientSearchTable extends React.Component {
 
                         ]}>
 
-                    </PatientAddTable>
+                    </SearchTable>
                 </Paper>
             </div>
         )
