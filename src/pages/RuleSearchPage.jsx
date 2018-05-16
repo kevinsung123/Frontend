@@ -1,13 +1,12 @@
 import * as React from 'react'
-import { RuleSearchTable, RuleSearchList, RuleDetail } from '/components/Rules';
+import { SearchRule, RuleSearchForm, RuleSearchTable, RuleDetail } from '/components/Rules';
 
 
 export class RuleSearchPage extends React.Component {
     render() {
         return (
             <div>
-                <RuleSearchTable />
-                <RuleSearchList />
+                <SearchRule />
             </div>
         )
     }

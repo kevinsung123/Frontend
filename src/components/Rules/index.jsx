@@ -1,6 +1,6 @@
-import RuleSearchList from './RuleSearchList'
+import RuleSearchForm from './RuleSearchForm'
 import RuleDetail from './RuleDetail'
 import RuleSearchTable from './RuleSearchTable'
 
 
-export {RuleSearchTable, RuleDetail, RuleSearchList}
+export {RuleSearchForm, RuleSearchTable, RuleDetail}
