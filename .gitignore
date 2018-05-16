@@ -13,3 +13,6 @@
 
 ### React ###
 static/js/app.css
+
+### yarn ###
+.log
