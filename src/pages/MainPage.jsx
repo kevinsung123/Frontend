@@ -1,8 +1,20 @@
 import * as React from 'react'
+//import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
+import 'bootstrap/dist/css/bootstrap-grid.css';
+import '../app.sass'
 
-import 'bootstrap/dist/css/bootstrap-grid.css'
+const styles = {
+    //fontFamily: 'Do Hyeon'
+};
 
-import Paper from 'material-ui/Paper';
 
 const STATS = [
     {service_name: '가정간호', tasks: [
