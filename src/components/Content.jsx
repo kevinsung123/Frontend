@@ -24,7 +24,7 @@ export class Content extends React.Component {
                     <Route exact path="/patients/search" component={PatientSearchPage} />
                     <Route exact path="/patients/add" component={PatientAddPage} />
                     <Route exact path="/rules/search" component={SearchRule} />
-                    <Route exact path="/rules/add" component={AddRule} />
+                    <Route exact path="/rules/add" component={AddRule} />                    
 
                 </Switch>
 
@@ -32,3 +32,7 @@ export class Content extends React.Component {
         )
     }
 }
+
+/*
+
+*/

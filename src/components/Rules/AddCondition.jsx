@@ -4,30 +4,40 @@ import {Table, TableRow,TableRowColumn, TableBody, TableCell} from 'material-ui/
 import DropDownMenu from 'material-ui/DropDownMenu'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField';
+import ContentRemove from 'material-ui/svg-icons/content/remove';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import red from '@material-ui/core/colors/red';
 
 export default class Condition extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.order = this.props.order;
+        // console.log(this.props.order);
         this.state = {
-            propertyValue: this.props.propertyValue,
-            operatorValue: this.props.operatorValue,
+            propertyValue: 0,
+            operatorValue: 0,
         };
     }
 
     handlePropertyChange = (event, index, value) => {
         this.setState({propertyValue: value}, () => {
-            this.props.changeCondition(this.order, this.state.propertyValue, this.state.operatorValue);
+            this.props.changeCondition(this.idx, this.state.propertyValue, this.state.operatorValue);
         });
     };
 
     handleOperatorChange = (event, index, value) => {
+        var index = parseInt(this.props.index);
         this.setState({operatorValue: value}, () => {
-            this.props.changeCondition(this.order, this.state.propertyValue, this.state.operatorValue);
+            this.props.changeCondition(index, this.state.propertyValue, this.state.operatorValue);
         });
     };
+
+    handleRemoveCondition = (event) => {
+        var index = parseInt(this.props.index);
+        console.log(index);
+        this.props.removeCondition(index);
+        //this.forceUpdate();
+    }
 
 
     render() {
@@ -61,8 +71,16 @@ export default class Condition extends React.Component {
                         label="Required"
                     />
                 </TableRowColumn>
-            </TableRow>
 
+                <TableRowColumn>
+                    <FloatingActionButton mini={true} 
+                        onClick={this.handleRemoveCondition.bind(this)}
+                        backgroundColor={red['500']} >
+                        <ContentRemove />
+
+                    </FloatingActionButton>
+                </TableRowColumn>
+            </TableRow>
         )
     }
 }
