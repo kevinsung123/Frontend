@@ -92,7 +92,7 @@ export class Header extends React.Component {
                         </div>
 
                         <div>
-                            <RaisedButton
+                            <RaisedButton 
                                 onClick={this.clickRuleMenuButton}
                                 label="규칙 업무"
                             />

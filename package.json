@@ -10,8 +10,8 @@
 						"node-sass": "^4.9.0",
 						"normalize-styl": "^4.1.1",
 						"parcel-bundler": "^1.7.1",
-						"react": "^16.0.0-0",
-						"react-dom": "^16.0.0-0",
+						"react": "^16.3.0",
+						"react-dom": "^16.3.0",
 						"redux-devtools": "^3.4.1",
 						"sass": "^1.0.0-beta.4"
 			},
@@ -19,6 +19,7 @@
 						"watch": "parcel watch src/index.jsx --out-dir static/js -o app"
 			},
 			"dependencies": {
+						"@material-ui/core": "^1.0.0",
 						"axios": "^0.17.1",
 						"babel-plugin-react-transform": "^3.0.0",
 						"babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -31,6 +32,7 @@
 						"jquery": "^3.3.1",
 						"lodash": "^4.17.10",
 						"material-ui": "^0.20.0",
+						"parcel": "^1.8.1",
 						"popper.js": "^1.14.3",
 						"radium": "^0.21.1",
 						"rc-checkbox": "^2.1.1",
@@ -49,6 +51,7 @@
 						"react-treebeard": "^2.1.0",
 						"react-treeview-component": "^0.1.2",
 						"redux": "^3.7.2",
-						"source-map": "^0.6.1"
+						"source-map": "^0.6.1",
+						"webfontloader": "^1.6.28"
 			}
 }

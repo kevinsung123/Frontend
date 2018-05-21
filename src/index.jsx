@@ -13,6 +13,15 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import './app.sass'
 
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families : ['Do Hyeon', 'Gugi', 'Sunflower:300', 'Gothic A1', 'Nanum Gothic']
+  }
+});
+
+
 const history = createBrowserHistory();
 
 ReactDOM.render(
