@@ -93,6 +93,7 @@ export default class PatientAddForm extends React.Component {
     this.state.id++;
     this.props.onSubmit(this.state);
     const user = this.state;
+    
     apicall.post('', { user }).then((response) => {
       console.log(response);
     }).catch((error) => {

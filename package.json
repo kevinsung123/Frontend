@@ -19,7 +19,7 @@
 						"watch": "parcel watch src/index.jsx --out-dir static/js -o app"
 			},
 			"dependencies": {
-					
+						
 						"axios": "^0.17.1",
 						"babel-plugin-react-transform": "^3.0.0",
 						"babel-plugin-transform-object-rest-spread": "^6.26.0",
