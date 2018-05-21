@@ -18,6 +18,7 @@ import {
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import SearchTable from './SearchTable';
+import axios from 'axios';
 const style = {
     height: '100%',
     width: '100%',
@@ -54,6 +55,16 @@ const style = {
 
 };
 
+const apicall = axios.create({
+    baseURL: 'localhost:5000/patient',
+    responseType: 'json',
+    withCredentials: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+    },
+  })
+  
 export default class PatientSearchTable extends React.Component {
     state = {
         data: [

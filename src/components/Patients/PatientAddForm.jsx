@@ -8,6 +8,7 @@ import Img from 'react-image';
 import avatar from './img/marc.jpg';
 import RaisedButton from 'material-ui/RaisedButton';
 import PatientAddTab from './PatientAddTab';
+import axios from 'axios';
 
 //injectTapEventPlugin();
 const style = {
@@ -31,10 +32,21 @@ const gridstyles = {
     margin: "auto"
   },
 };
+const apicall = axios.create({
+  baseURL: 'http://localhost:5000/patient',
+  responseType: 'json',
+  withCredentials: true,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+  },
+})
+
 export default class PatientAddForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       patientname: "",
       age: "",
       birthday: "",
@@ -78,11 +90,42 @@ export default class PatientAddForm extends React.Component {
   };
   onSubmit = e => {
     e.preventDefault();
+    this.state.id++;
     this.props.onSubmit(this.state);
+    const user = this.state;
+    apicall.post('', { user }).then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    })
+
+
     this.setState({
+      id: "",
       patientname: "",
       age: "",
-      birthday: ""
+      birthday: "",
+      pt_class: "",
+      pt_new: "",
+      stability: "",
+      oral_ingestion: "",
+      ADL: "",
+      KTIS: "",
+      VAS: "",
+      MBI: "",
+      MAS: "",
+      MMT: "",
+      BBS: "",
+      ROM: "",
+      Onset: "",
+      hc_class: "",        //가정간호환자구분
+      vital_sign: "",       //활력증상
+      consciousness: "",    //의식수준
+      nutrition: "",        //영양
+      urination: "",       //배뇨 및 배변
+      breathdegree: "",    //호흡정도
+      dailyliving: "",     //일상생활수행
+      emotionalstate: "",  //정서상태
     });
 
   }
@@ -93,7 +136,7 @@ export default class PatientAddForm extends React.Component {
     return (
       <div style={gridstyles.root}>
         <Paper style={style} zDepth={2} rounded={true}>
-          <GridList style={gridstyles.gridList} cols='6'>
+          <GridList style={gridstyles.gridList} cols={6}>
             <img
               width="200px"
               height="150px"
@@ -135,7 +178,7 @@ export default class PatientAddForm extends React.Component {
               name="pt_new"
               hintText="ex) Y or N"
               floatingLabelText="방문재활 신규여부 "
-              value={this.state.pt_class}
+              value={this.state.pt_new}
               onChange={e => this.change(e)}
               floatingLabelFixed={true}
             />
@@ -228,6 +271,7 @@ export default class PatientAddForm extends React.Component {
               floatingLabelFixed={true}
             />
             <RaisedButton label="환자등록" onClick={e => this.onSubmit(e)} primary />
+            <div>{JSON.stringify(this.state)}</div>
           </GridList>
 
         </Paper>
