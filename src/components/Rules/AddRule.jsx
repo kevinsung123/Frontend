@@ -108,19 +108,16 @@ export default class AddRule extends React.Component {
 							</TableRowColumn>
 						</TableRow>
 
-						<TableRow>
-							<TableRowColumn colSpan={3}>
-								{this.state.conditions.map(
 
-									(condition, i) =>
-										<Conditions
-											key={'condition_'+i}
-											changeCondition={this.handleChangeCondition}
-											{...condition} />
+						{this.state.conditions.map(
 
-								)}
-							</TableRowColumn>
-						</TableRow>
+							(condition, i) =>
+								<Conditions
+									key={'condition_'+i}
+									changeCondition={this.handleChangeCondition}
+									{...condition} />
+
+						)}
 
                         <TableRow>
                             <TableRowColumn>
