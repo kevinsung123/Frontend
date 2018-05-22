@@ -1,309 +1,259 @@
 import React, {Component} from 'react';
-import Table from "./RuleSearchTable";
+import PropTypes from 'prop-types';
+
 import Form from "./RuleSearchForm";
+
+import orderBy from "lodash/orderBy";
+
+import axios from 'axios';
+
+//Material-ui import
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 import TextField from "material-ui/TextField";
 import DeleteIcon from "material-ui/svg-icons/action/delete"
-import orderBy from "lodash/orderBy";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+//import {Table, TableHeader, TableHeaderColumn, TableRow,TableRowColumn,TableBody, TableCell} from 'material-ui/core/Table'
 
-const styles = {
-  propContainer: {
-    width: 200,
-    overflow: 'hidden',
-    margin: '20px auto 0',
-  },
-  propToggleHeader: {
-    margin: '20px auto 10px',
-  },
-};
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
 
-/**
- * A more complex example, allowing the table height to be set, and key boolean properties to be toggled.
- */
+import {VHS_property} from "../../data";
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+//End of Material-ui import
 
-const invertDirection = {
-    asc: "desc",
-    desc: "asc"
-  };
 
 export default class SearchRule extends React.Component {
 
-    state = {
-        data: [
-          {
-            RuleName: "TUBE1",
-            ServiceName: "가정간호",
-            condition1: "환자구분=비위관",
-            condition2: "영양=level2"
-          },
-          {
-            RuleName: "TUBE2",
-            ServiceName: "가정간호",
-            condition1: "환자구분=위장루",
-            condition2: "영양=level2"
-          },
-          {
-            RuleName: "상처1",
-            ServiceName: "가정간호",
-            condition1: "환자구분=욕창",
-            condition2: "기타=level2"
-          },
-          {
-            RuleName: "PT개시1",
-            ServiceName: "방문재활",
-            condition1: "PT환자구분=CNS",
-            condition2: "ADL<40",
-            condition3: "신규여부=Y"
-          },
-          {
-            RuleName: "PT개시2",
-            ServiceName: "방문재활",
-            condition1: "PT환자구분=CNS",
-            condition2: "K-TIS<19",
-            condition3: "신규여부=Y"
-          },
-          {
-            RuleName: "PT지속1",
-            ServiceName: "방문재활",
-            condition1: "PT환자구분=CNS",
-            condition2: "ADL<35",
-            condition3: "신규여부=N",
-            condition4: "K-TIS<16"
-          },
-          {
-            RuleName: "PT지속2",
-            ServiceName: "방문재활",
-            condition1: "PT환자구분=CNS",
-            condition2: "K-TIS<16",
-            condition3: "신규여부=N",
-            condition4: "MAS<15"
-          },
-          {
-            RuleName: "상처2",
-            ServiceName: "가정간호",
-            condition1: "환자구분=일반상처",
-            condition2: "기타=level2"
-          },
-          {
-            RuleName: "TUBE3",
-            ServiceName: "가정간호",
-            condition1: "환자구분=정체 도뇨관",
-            condition2: "배뇨 및 배변=level2"
-          },
-          {
-            RuleName: "기타1",
-            ServiceName: "가정간호",
-            condition1: "활력증상=level2"
-          },
-          {
-            RuleName: "기타2",
-            ServiceName: "가정간호",
-            condition1: "의식수준=level2"
-          },
-          {
-            RuleName: "기타3",
-            ServiceName: "가정간호",
-            condition1: "영양=level2"
-          },
-          {
-            RuleName: "PT종료1",
-            ServiceName: "방문재활",
-            condition1: "PT환자구분=CNS",
-            condition2: "ADL>=35",
-            condition3: "신규여부=N",
-            condition4: "K-TIS>=16"
-          },
-          {
-            RuleName: "입원대상1",
-            ServiceName: "가정간호",
-            condition1: "활력증상=level3"
-          },
-          {
-            RuleName: "입원대상2",
-            ServiceName: "가정간호",
-            condition1: "의식수준=level3"
-          }
-        ],
-        editIdx: -1,
-        columnToSort: "",
-        sortDirection: "desc",
-        query: "",
-    fixedHeader: true,
-    fixedFooter: false,
-    stripedRows: false,
-    showRowHover: true,
-    selectable: true,
-    multiSelectable: true,
-    enableSelectAll: false,
-    deselectOnClickaway: false,
-    showCheckboxes: true,
-    height: '300px',
-    columnToQuery: 'RuleName',
-    editIdx: -1
+  constructor(props) {
+    super(props);
+
+    //this.load_property = this.load_property.bind(this);
+    //this.load_registered_rule = this.load_registered_rule.bind(this);
+    this.state = {
+      vhs_property_table: [],
+      vhs_rule_list: [],
+    }
+  }
+
+  componentWillMount() {
+
+    this.load_property();
+    this.load_registered_rule();
+  }
+  
+  load_property = () => {
+
+    let arr = []
+    let i=0;
+    let idx=0;
+    for(i=0;i<VHS_property.length;i+=5) {
+      arr.push(VHS_property.slice(i,i+5));
+    }
+
+    
+    this.setState({
+      ...this.state,
+      vhs_property_table: arr
+    })
+
+
   };
 
-  handleRemove = i => {
-    this.setState(state => ({
-      data: state.data.filter((row, j) => j !== i)
-    }));
+  load_registered_rule = () => {
+    axios.get('/rule', {})
+      .then((response) => {
+        this.setState({
+          ...this.state,
+          vhs_rule_list: response.data,
+        }, ()=>{
+          /*let rule_list_status = []
+          this.vhs_rule_list.map((rule_item, idx)=>{
+            rule_list_status.push({detail: false})
+          })
+          this.setState({
+            ...this.state,
+            rule_list_status
+          });*/
+        });
+      }).catch((error) => {
+        console.log(error);
+      })    
   };
 
-  startEditing = i => {
-    this.setState({ editIdx: i });
-  };
-
-  stopEditing = () => {
-    this.setState({ editIdx: -1 });
-  };
-
-  handleSave = (i, x) => {
-    this.setState(state => ({
-      data: state.data.map((row, j) => (j === i ? x : row))
-    }));
-    this.stopEditing();
-  };
-
-  handleSort = columnName => {
-    this.setState(state => ({
-      columnToSort: columnName,
-      sortDirection:
-        state.columnToSort === columnName
-          ? invertDirection[state.sortDirection]
-          : "asc"
-    }));
-  };
+  toggleRuleItemDetail = (idx) => {
+    
+    let new_vhs_rule_list = this.state.vhs_rule_list;
+    let cur_rule_item = new_vhs_rule_list[idx];
+    cur_rule_item["detail"] = !cur_rule_item["detail"]
+    new_vhs_rule_list[idx] = cur_rule_item
+    this.setState({
+      ...this.state,
+      vhs_rule_list: new_vhs_rule_list,
+    });
+    //console.log(this.state);
+  }
 
   render() {
-    const lowerCaseQuery = this.state.query.toLowerCase();
     return (
-        <div className="SearchRule">
-          <div style={{ display: "flex" }}>
-            <div style={{ display: "flex", margin: "auto" }}>
-              <TextField
-                hintText="단어를 입력하세요"
-                floatingLabelText="검색 창"
-                value={this.state.query}
-                onChange={e => this.setState({ query: e.target.value })}
-                floatingLabelFixed
-              />
-              <SelectField
-                style={{ marginLeft: "1em" }}
-                floatingLabelText="검색할 항목"
-                value={this.state.columnToQuery}
-                onChange={(event, index, value) =>
-                  this.setState({ columnToQuery: value })
-                }
-              >
-                <MenuItem value="RuleName" primaryText="룰 이름" />
-                <MenuItem value="ServiceName" primaryText="서비스 이름" />
-                <MenuItem value="condition1" primaryText="조건1" />
-                <MenuItem value="condition2" primaryText="조건2" />
-                <MenuItem value="condition3" primaryText="조건3" />
-                <MenuItem value="condition4" primaryText="조건4" />
-              </SelectField>
-            </div>
-          </div>
-          <Table
-             fixedHeader={this.state.fixedHeader}
-            selectable={this.state.selectable}
-            multiSelectable={this.state.multiSelectable}
-            handleSort={this.handleSort}
-            handleRemove={this.handleRemove}
-            startEditing={this.startEditing}
-            editIdx={this.state.editIdx}
-            stopEditing={this.stopEditing}
-            handleSave={this.handleSave}
-            columnToSort={this.state.columnToSort}
-            sortDirection={this.state.sortDirection}
-            data={orderBy(
-              this.state.query
-                ? this.state.data.filter(x =>
-                    x[this.state.columnToQuery]
-                      .toLowerCase()
-                      .includes(lowerCaseQuery)
-                  )
-                : this.state.data,
-              this.state.columnToSort,
-              this.state.sortDirection
-            )}
-            header={[
-              {
-                name: "룰 이름",
-                prop: "RuleName"
-              },
-              {
-                name: "서비스 이름",
-                prop: "ServiceName"
-              },
-              {
-                name: "조건1",
-                prop: "condition1"
-              },
-              {
-                name: "조건2",
-                prop: "condition2"
-              },
-              {
-                name: "조건3",
-                prop: "condition3"
-              },
-              {
-                name: "조건4",
-                prop: "condition4"
-              }
-            ]}
-          />
+        <div className="container">
+          <SearchConditionTable property_table={this.state.vhs_property_table} />   
+          <SearchRuleTable rule_list={this.state.vhs_rule_list}
+            toggleRuleItemDetail={this.toggleRuleItemDetail} />
         </div>
     );
   }
 }
 
+const SearchRuleTable = ({rule_list, toggleRuleItemDetail=f=>f}) => {
 
-/*
-import * as React from 'react';
-import { Table, TableBody, TalbeHeader, TableHeaderColumen, TableRow, TableRowColumn } from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import DatePicker from './DatePicker';
-import DropMenu from './DropMenu';
-import Paper from 'material-ui/Paper';
+  return (
+    <Table>
+      <TableBody
+        >
+        {rule_list.map(
+          (rule_item, idx) => ([
+            <SearchRuleItem key={idx.toString()}
+              rule_item={rule_item}
+              index={idx}
+              onClick={ ()=>toggleRuleItemDetail(idx) }
+            />,
+            <SearchRuleItemDetail key={"RuleTableRowDetail" + idx.toString()}
+              rule_item={rule_item}
+              rule_detail={rule_item.detail}
+            />
+          ])
+        )}
+      </TableBody>
+    </Table>
+  )
+}
+SearchRuleTable.propTypes = {
+  rule_list: PropTypes.array,
+}
 
-const style = {
-    height: '100%',
-    width: '100%',
-    margin: 20,
-    textAlign: 'center',
+const SearchRuleItem = ({rule_item, index, onClick=f=>f}) => {
 
+  return (
+    <TableRow>
+      <TableCell>
+        {rule_item.name}
+      </TableCell>
+      <TableCell>
+        {rule_item.service}
+      </TableCell>
+      <TableCell>
+        <Button color="primary" aria-label="add"
+          onClick={ ()=>onClick(index) }>
+          <AddIcon />
+        </Button>
+      </TableCell>
+    </TableRow>
+  )
+}
+
+const SearchRuleItemDetail = ({rule_detail, rule_item}) => {
+
+  if( !rule_detail ) {
+    return null;
+  }
+  return (
+    <TableRow>
+      <TableCell colSpan={3}>
+        <Table>
+          <SearchRuleItemDetailTableHeader />
+          <TableBody>
+            {rule_item.predicates.map(
+              (predicate, idx) => (
+                <SearchRulePredicate 
+                  key={"SearchRulePredicate" + idx.toString()}
+                  predicate={predicate}
+                />
+              )
+            )}
+          </TableBody>
+        </Table>
+      </TableCell>
+    </TableRow>
+  )
+}
+
+const SearchRulePredicate = ({predicate}) => {
+  return (
+    <TableRow>
+      <TableCell>
+        {predicate.property}
+      </TableCell>
+      <TableCell>
+        {predicate.operator}
+      </TableCell>
+      <TableCell>
+        {predicate.value}
+      </TableCell>
+    </TableRow>
+  )
+}
+
+const SearchRuleItemDetailTableHeader = () => {
+  return (
+    <TableHead>
+      <TableRow>
+        <TableCell>
+          Property
+        </TableCell>
+        <TableCell>
+          Operator
+        </TableCell>
+        <TableCell>
+          Value
+        </TableCell> 
+      </TableRow>
+    </TableHead>
+  )
+}
+
+
+
+let SearchConditionTable = props => {
+  return (
+    <Table>
+      <TableBody>
+        {props.property_table.map(
+            (property_list, idx) => 
+            <SearchConditionRow 
+              key={'SearchConditionRow'+idx.toString()}
+              property_list={property_list} />
+          )
+        }
+      </TableBody>
+    </Table>
+  )
 };
 
-export default class RuleSearchTable extends React.Component {
-    render() {
-        return (
-            <div className="RuleTable">
-                <Paper style={style} zDepth={4} rounded={false} >
-                    <Table>
-                        <TableBody id ="TB">
-                            <TableRow >
-                                <TableRowColumn>기간</TableRowColumn>
-                                <TableRowColumn><DatePicker /></TableRowColumn>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowColumn>서비스명</TableRowColumn>
-                                <TableRowColumn>가정간호</TableRowColumn>
-                                <TableRowColumn>방문재활</TableRowColumn>
-                                <TableRowColumn>치매예방</TableRowColumn>
-                                <TableRowColumn>복약상담</TableRowColumn>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowColumn>환자정보</TableRowColumn>
-                                <TableRowColumn><DropMenu /></TableRowColumn>
-                                <TableRowColumn><TextField /></TableRowColumn>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </Paper>
-            </div>
-        );
-    }
+let SearchConditionRow = props => {
+  return (
+    <TableRow>
+      {props.property_list.map(
+          (property_item, idx) => (
+            <TableCell
+              key={'SearchConditionRowColumn' + idx.toString()}
+            >
+              <Checkbox 
+                color="default" 
+                value="checkedG" 
+                key={'SearchConditionCheckBox' + idx.toString()}
+              />{property_item}              
+            </TableCell>
+          )
+        )
+      }
+    </TableRow>
+  )
 }
-*/
+
+
