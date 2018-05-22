@@ -56,7 +56,7 @@ export class Header extends React.Component {
 
     render() {
         return (
-            <div class="container width-max-100">
+            <div className="container width-max-100">
 
 
                 <Toolbar>

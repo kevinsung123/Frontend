@@ -22,7 +22,7 @@ WebFont.load({
 });
 
 
-const history = createBrowserHistory();
+//const history = createBrowserHistory();
 
 ReactDOM.render(
   <BrowserRouter>

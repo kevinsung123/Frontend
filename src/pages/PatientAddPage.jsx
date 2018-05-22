@@ -39,14 +39,17 @@ export class PatientAddPage extends React.Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-                <div>
-                    <PatientAddForm
-                        onSubmit={submission =>
-                            this.setState({
-                                data: [...this.state.data, submission]
-                            })}
-                    />
+            <div className="container">
+                <div className="container">
+                    <PatientAddForm />
+                </div>
+            </div>
+        )
+    }
+}
+
+/*
+<div>
                     <div style={style.root}>
                         <Paper style={style} zDepth={2} rounded={true}>
                             <Tabs
@@ -155,8 +158,4 @@ export class PatientAddPage extends React.Component {
                             </Tabs>
                         </Paper>
                     </div>
-                </div>
-            </MuiThemeProvider>
-        )
-    }
-}
+*/

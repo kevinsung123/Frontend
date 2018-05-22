@@ -1,38 +1,21 @@
-
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import { GridList, GridTile } from 'material-ui/GridList';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import Img from 'react-image';
-import avatar from './img/marc.jpg';
-import RaisedButton from 'material-ui/RaisedButton';
-import PatientAddTab from './PatientAddTab';
+
+import TextField    from '@material-ui/core/TextField';
+import Table        from "@material-ui/core/Table";
+import TableBody    from "@material-ui/core/TableBody";
+import TableRow     from "@material-ui/core/TableRow";
+import TableCell    from "@material-ui/core/TableCell";
+import TableHead    from "@material-ui/core/TableHead";
+import Select       from "@material-ui/core/Select";
+import MenuItem     from "@material-ui/core/MenuItem";
+import Button       from "@material-ui/core/Button";
+
 import axios from 'axios';
 
-//injectTapEventPlugin();
-const style = {
-  height: '15%',
-  width: '90%',
-  textAlign: 'center',
+import { VHS_property  } from "../../data";
+  
 
-};
-
-const gridstyles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  gridList: {
-    color: "black",
-    fontWeight: "bold",
-    overflowY: 'auto',
-    padding: "10",
-    margin: "auto"
-  },
-};
-const apicall = axios.create({
+/*const apicall = axios.create({
   baseURL: 'http://localhost:5000/patient',
   responseType: 'json',
   withCredentials: true,
@@ -40,281 +23,187 @@ const apicall = axios.create({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
   },
-})
+})*/
+
+/*
+hc_class: "",        //가정간호환자구분
+vital_sign: "",       //활력증상
+consciousness: "",    //의식수준
+nutrition: "",        //영양
+urination: "",       //배뇨 및 배변
+breathdegree: "",    //호흡정도
+dailyliving: "",     //일상생활수행
+emotionalstate: "",  //정서상태
+*/
 
 export default class PatientAddForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      id: 0,
-      patientname: "",
-      age: "",
-      birthday: "",
-      // prehabilitation: {
-      pt_class: "",
-      pt_new: "",
-      stability: "",
-      oral_ingestion: "",
-      ADL: "",
-      KTIS: "",
-      VAS: "",
-      MBI: "",
-      MAS: "",
-      MMT: "",
-      BBS: "",
-      ROM: "",
-      Onset: "",
-      // },
-      // homecare: {            //가정간호
-      hc_class: "",        //가정간호환자구분
-      vital_sign: "",       //활력증상
-      consciousness: "",    //의식수준
-      nutrition: "",        //영양
-      urination: "",       //배뇨 및 배변
-      breathdegree: "",    //호흡정도
-      dailyliving: "",     //일상생활수행
-      emotionalstate: "",  //정서상태
-      // }
+      medical_property: VHS_property,
+      medical_property_values: {}
     };
-
-
   }
 
+  handlePropertyValueChange = (event) => {
+    let new_medical_property_values = this.state.medical_property_values;
+    new_medical_property_values[event.target.name] = event.target.value;
 
-
-
-  change = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-  onSubmit = e => {
-    e.preventDefault();
-    this.state.id++;
-    this.props.onSubmit(this.state);
-    const user = this.state;
     
-    apicall.post('', { user }).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    })
-
-
     this.setState({
-      id: "",
-      patientname: "",
-      age: "",
-      birthday: "",
-      pt_class: "",
-      pt_new: "",
-      stability: "",
-      oral_ingestion: "",
-      ADL: "",
-      KTIS: "",
-      VAS: "",
-      MBI: "",
-      MAS: "",
-      MMT: "",
-      BBS: "",
-      ROM: "",
-      Onset: "",
-      hc_class: "",        //가정간호환자구분
-      vital_sign: "",       //활력증상
-      consciousness: "",    //의식수준
-      nutrition: "",        //영양
-      urination: "",       //배뇨 및 배변
-      breathdegree: "",    //호흡정도
-      dailyliving: "",     //일상생활수행
-      emotionalstate: "",  //정서상태
-    });
-
+      ...this.state,
+      medical_property_values: new_medical_property_values,
+    }, ()=>console.log(this.state.medical_property_values))
   }
 
+  /*shouldComponentUpdate(nextProps, nextState) {
+    p = this.medical_property_values;
+    q = nextState.medical_propersty_values;
 
+    for(let i in p) {
+      if(q.hasOwnProperty(i)) {
+        if( p[i] !== q[i] ) return false;
+      } else return false;
+    }
+    for(let i in q) {
+      if(p.hasOwnProperty(i)) {
+        if( p[i] !== q[i] ) return false;
+      } else return false;
+    }
 
+    return true;
+  }*/
+
+  //TODO let TableBody inside Personal Field
   render() {
     return (
-      <div style={gridstyles.root}>
-        <Paper style={style} zDepth={2} rounded={true}>
-          <GridList style={gridstyles.gridList} cols={6}>
-            <img
-              width="200px"
-              height="150px"
-              src="https://creativetimofficial.github.io/material-dashboard-react/static/media/marc.8880a65c.jpg"
-            />
-            <TextField
-              name="patientname"
-              floatingLabelText="이름"
-              value={this.state.patientname}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="age"
-              hintText=""
-              floatingLabelText="나이"
-              value={this.state.age}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-
-            <TextField
-              name="birthday"
-              hintText=""
-              floatingLabelText="생년월일"
-              value={this.state.birthday}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="pt_class"
-              hintText="ex) CNS,낙상,통증.."
-              floatingLabelText="방문재활 환자구분 "
-              value={this.state.pt_class}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="pt_new"
-              hintText="ex) Y or N"
-              floatingLabelText="방문재활 신규여부 "
-              value={this.state.pt_new}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="ADL"
-              hintText="ex) < 35"
-              floatingLabelText="ADL"
-              value={this.state.ADL}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="KTIS"
-              hintText="ex) < 16"
-              floatingLabelText="K-TIS"
-              value={this.state.KTIS}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="VAS"
-              hintText=" ex) >= 3"
-              floatingLabelText="VAS"
-              value={this.state.VAS}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="MBI"
-              hintText="ex) >= 3"
-              floatingLabelText="MBI "
-              value={this.state.MBI}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="MMT"
-              hintText="ex) >= 3"
-              floatingLabelText="MMT"
-              value={this.state.MMT}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="hr_class"
-              hintText="ex) = 비위관,위장루,정체도뇨관 etc"
-              floatingLabelText="환자구분"
-              value={this.state.hr_class}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="vital_sign"
-              hintText="ex) = level2"
-              floatingLabelText="활력증상"
-              value={this.state.vital_sign}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="nutrition"
-              hintText="ex) = level2"
-              floatingLabelText="영양"
-              value={this.state.nutrition}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="urination"
-              hintText="ex) = level2"
-              floatingLabelText="배뇨 및 배변"
-              value={this.state.urination}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <TextField
-              name="breathdegree"
-              hintText="ex) = level2"
-              floatingLabelText="호흡 및 정도"
-              value={this.state.breathdegree}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-             <TextField
-              name="dailyliving"
-              hintText="ex) = level2"
-              floatingLabelText="일상생활수행"
-              value={this.state.breathdegree}
-              onChange={e => this.change(e)}
-              floatingLabelFixed={true}
-            />
-            <RaisedButton label="환자등록" onClick={e => this.onSubmit(e)} primary />
-            <div>{JSON.stringify(this.state)}</div>
-          </GridList>
-
-        </Paper>
-      </div>
+      <Table>
+        <TableBody>
+          <PersonalField />
+        </TableBody>
+        <MedicalField 
+          properties={this.state.medical_property}
+          property_values={this.state.medical_property_values}
+          handlePropertyValueChange={this.handlePropertyValueChange} />
+        
+        <TableBody>
+          <TableRow>
+            <TableCell colSpan={3}>
+              <Button variant="raised">
+                Submit
+              </Button>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   }
-
 }
 
 
-// export default class PatientAddForm extends React.Component {
-// constructor(props) {
-//     super(props);
-//     this.state = {
-//       value: ""
-//     };
 
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
+const PersonalField = () => {
+  return (
+    <TableRow>
+      <TableCell>
+        <TextField
+          id="patient_name"
+          label="Patient Name"
+        />
+      </TableCell>
+      <TableCell>
+        <TextField
+          id="patient_age"
+          label="Patient Age"
+        />
+      </TableCell>
+      <TableCell>
+        <TextField
+          id="patient_birthday"
+          label="Patient Birthday"
+        />
+      </TableCell>
+    </TableRow>
+  )
+}
 
-//   handleChange(event) {
-//     this.setState({value: event.target.value});
-//   }
+const MedicalField = ({properties, property_values, handlePropertyValueChange}) => {
+  let i=0;
+  let properties_table = []
+  for(i=0;i<properties.length;i+=3) {
+    properties_table.push( properties.slice(i, i+3) )
+  }
 
-//   handleSubmit(event) {
-//     alert('An essay was submitted: ' + this.state.value);
-//     event.preventDefault();
-//   }
+  return (
+    <TableBody>
+    {properties_table.map(
+      (properties_list, idx) => (
+        <MedicalFieldRow properties_list={properties_list}
+          property_values={property_values}
+          key={idx}
+          handleChange={handlePropertyValueChange}
+        />
+      )
+    )}
+    </TableBody>
+  )
+}
 
-//   render() {
-//     return (
-//       <div>
-//       <form onSubmit={this.handleSubmit}>
-//         <label>
-//           Essay:
-//           <textarea value={this.state.value} onChange={this.handleChange} />
-//         </label>
-//         <input type="submit" value="Submit" />
-//       </form>
-//       <h1>test</h1>
-//       </div>
-//     );
-//   }
-// }
+const MedicalFieldRow = ({properties_list, property_values, handleChange=f=>f}) => {
+
+  return (
+    <TableRow>
+    {properties_list.map(
+      (property, idx) => (
+        <MedicalFieldItem key={'medical_field' + idx.toString()}
+          property={property}
+          selected_value={property_values[property.name]}
+          handleChange={handleChange}
+        />
+      )
+    )}
+    </TableRow>
+  )
+}
+
+const MedicalFieldItem = ({property, selected_value, handleChange=f=>f}) => {
+
+  if(!selected_value) {
+    selected_value = "";
+  }
+
+  if(property.type == "category") {
+    return (
+      <TableCell>
+        {property.name}:
+        <Select
+          value={selected_value} 
+          onChange={handleChange}
+          inputProps={{
+            name:property.name,
+            id:property.name
+          }}
+          >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {property.values.map(
+            (value, idx) => (
+              <MenuItem 
+                key={'medical_field_menu_item' + idx.toString()}
+                value={value}>{value}</MenuItem>
+            )
+          )}
+        </Select>
+      </TableCell>
+    )
+  }
+  else {
+    return (
+      <TextField
+      id={property.name}
+      label={property.name}/>
+    )
+  }
+}

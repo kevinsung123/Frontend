@@ -33,3 +33,5 @@ export const VHS_property = [
 	{"name": "정서상태 및 적응", "type": "category",
 	 "values": ["level1", "level2", "level3"]},
 ];
+
+
