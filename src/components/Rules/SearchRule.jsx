@@ -247,7 +247,7 @@ let SearchConditionRow = props => {
                 color="default" 
                 value="checkedG" 
                 key={'SearchConditionCheckBox' + idx.toString()}
-              />{property_item}              
+              />{property_item.name}              
             </TableCell>
           )
         )
