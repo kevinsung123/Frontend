@@ -1,24 +1,24 @@
 import * as React from 'react';
-import {
-    Table,
-    TableBody,
-    TalbeHeader, TableHeaderColumen,
-    TableRow, TableRowColumn
-} from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import './Patient.sass';
-import Paper from 'material-ui/Paper';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
-import {
-    PatientAddTab,
-    PatientAddForm,
-} from '/components/Patients';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import SearchTable from './SearchTable';
+import TextField from '@material-ui/core/TextField';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableHeadColumn from "@material-ui/core/TableHead";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
+import Paper from '@material-ui/core/Paper';
+import SelectField from '@material-ui/core/Select';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
+
+
 import axios from 'axios';
+
+
 const style = {
     height: '100%',
     width: '100%',
@@ -50,183 +50,181 @@ const style = {
         borderRadius: "3px",
         color: "white",
         background: "#00bcd4",
-    }
-
-
+    },
 };
 
-const apicall = axios.create({
-    baseURL: 'localhost:5000/patient',
-    responseType: 'json',
-    withCredentials: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
-    },
-  })
-  
 export default class PatientSearchTable extends React.Component {
-    state = {
-        data: [
-            {
-                patientname: "이혜민",
-                patientnumber: "111 ",
-                age: "58",
-                birthday: "1950.02.24"
-            },
-            {
-                patientname: "박진영",
-                patientnumber: "222 ",
-                age: "48",
-                birthday: "1945.06.24"
-            },
-            {
-                patientname: "이현우",
-                patientnumber: "333 ",
-                age: "52",
-                birthday: "1955.02.24"
-            }
-        ],
-        value: "",
-        query: "",
-        columnToQuery: "patientname"
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: Patient_data,
+            value: "",
+            query: "",
+            columnToQuery: "patientname"
+        };
+    }
 
     render() {
         return (
-            // <div style={style.root}>
             <div>
-                <div display="flex" margin="auto">
-                    <Card style={style.card}>
-                        <CardHeader style={style.cardheader}
-                            title="환자조건검색" />
-                        <CardText >
-                            <SelectField display="flex" margin="auto"
-                                floatingLabelText="환자검색기준"
-                                value={this.state.columnToQuery}
-                                onChange={(event, index, value) =>
-                                    this.setState({ columnToQuery: value })
-                                }
-                            >
-                                <MenuItem value="patientname" primaryText="환자이름" />
-                                <MenuItem value="patientnumber" primaryText="환자번호" />
-                            </SelectField>
-                            <TextField display="flex" margin="auto"
-                                hintText="환자검색"
-                                floatingLabelText="환자검색"
-                                value={this.state.query}
-                                onChange={e => this.setState({ query: e.target.value })}
-                            />
-                        </CardText>
-                    </Card>
-                </div>
-                <br/>
-                <br/>
-                <Divider />
-                
-                <Paper style={style} zDepth={2} rounded={false} >
-                    <SearchTable
-                        data={
-                            this.state.query
-                                ? this.state.data.filter(x =>
-                                    x[this.state.columnToQuery]
-                                        .toLowerCase()
-                                        .includes(this.state.query)
-                                )
-                                : this.state.data
+                <Card style={style.card}>
+                    <CardHeader title="환자조건검색" />
+                    <CardContent >
+                        <Select display="flex" 
+                          
+                            value={this.state.columnToQuery}
+                            onChange={(event, index, value) =>
+                                this.setState({ columnToQuery: value })
+                            }
+                        >
+                            <MenuItem value="patientname" >환자이름</MenuItem>
+                            <MenuItem value="patientnumber" >환자번호</MenuItem>
+                        </Select>
+                        <TextField display="flex" 
+                        
+                            value={this.state.query}
+                            onChange={e => this.setState({ query: e.target.value })}
+                        />
+                    </CardContent>
 
-                        }
-                        header={[
-                            {
-                                name: "이름",
-                                prop: "patientname",
-
-                            },
-                            // {
-                            //     name: "나이",
-                            //     prop: "age",
-
-                            // },
-                            // {
-                            //     name: "생년월일",
-                            //     prop: "birthday",
-
-                            // },
-                            {
-                                name: "방문재활 환자구분",
-                                prop: "pt_class",
-
-                            },
-                            {
-                                name: "방문재활 신규여부",
-                                prop: "pt_new",
-
-                            },
-                            {
-                                name: "ADL",
-                                prop: "ADL",
-
-                            },
-                            {
-                                name: "KTIS",
-                                prop: "KTIS",
-
-                            },
-                            {
-                                name: "VAS",
-                                prop: "VAS",
-
-                            },
-                            {
-                                name: "MBI",
-                                prop: "MBI",
-
-                            },
-                            {
-                                name: "MMT",
-                                prop: "MMT",
-
-                            },
-                            {
-                                name: "가정간호 환자구분",
-                                prop: "hr_class",
-
-                            },
-                            {
-                                name: "활력증상",
-                                prop: "vital_sign",
-
-                            },
-                            {
-                                name: "영양",
-                                prop: "nutrition",
-
-                            },
-                            {
-                                name: "배뇨 및 배변",
-                                prop: "urination",
-
-                            },
-                            {
-                                name: "호흡 및 정도",
-                                prop: "breathdegree",
-
-                            },
-                            {
-                                name: "일상 생활 수행",
-                                prop: "dailyliving",
-
-                            },
-
-
-                        ]}>
-
-                    </SearchTable>
-                </Paper>
+                </Card>
+                <PatientTable
+                    data={this.state.query
+                        ? this.state.data.filter(x =>
+                            x[this.state.columnToQuery]
+                                .toLowerCase()
+                                .includes(this.state.query)
+                        )
+                        : this.state.data
+                    }
+                    header={PatientTable_Header}
+                />
             </div>
         )
     }
 }
 
 
+
+
+
+
+const PatientTable = ({ data, header }) =>
+    <Table>
+        <TableHead>
+            <TableRow>
+                {header.map((x, i) =>
+                    <TableCell key={'search-thc' + i.toString()}>
+                        {x.name}
+                    </TableCell>
+                )}
+            </TableRow>
+        </TableHead>
+        <TableBody>
+            {data.map((x, i) => row(x, i, header))}
+        </TableBody>
+    </Table>
+    ;
+
+
+const row = (x, i, header) =>
+    <TableRow key={'search-tr' + i.toString()}>
+        {header.map((y, k) =>
+            <TableCell key={'search-trc' + k.toString()}>
+                {x[y.prop]}
+            </TableCell>
+        )}
+    </TableRow>;
+
+
+const PatientTable_Header = [
+    {
+        name: "이름",
+        prop: "patientname",
+
+    },
+    {
+        name: "나이",
+        prop: "age",
+
+    },
+    {
+        name: "생년월일",
+        prop: "birthday",
+
+    },
+    {
+        name: "환자구분",
+        prop: "patient_classification",
+
+    },
+    {
+        name: "활력증상",
+        prop: "vital_sign",
+
+    },
+    {
+        name: "의식수준",
+        prop: "consciouness",
+
+    },
+    {
+        name: "영양",
+        prop: "nutrition",
+
+    },
+    {
+        name: "배뇨 및 배변",
+        prop: "urination",
+
+    },
+    {
+        name: "호흡 및 정도",
+        prop: "breathdegree",
+
+    },
+    {
+        name: "일상 생활 수행",
+        prop: "dailyliving",
+    }
+]
+
+const Patient_data = [
+    {
+        "patientname": "이혜정",
+        "age": " 56",
+        "birthday": "19650819",
+        "patient_classification": "비위관",
+        "vital_sign": "level2",
+        "consciouness": "level3",
+        "nutrition": "level3",
+        "urination": "level1",
+        "breathdegree": "level2",
+        "dailyliving": "level1"
+    },
+    {
+        "patientname": "정규남",
+        "age": " 65",
+        "birthday": "19550819",
+        "patient_classification": "위장루",
+        "vital_sign": "level2",
+        "consciouness": "level2",
+        "nutrition": "level3",
+        "urination": "level1",
+        "breathdegree": "level2",
+        "dailyliving": "level1"
+    },
+    {
+        "patientname": "김택용",
+        "age": " 52",
+        "birthday": "19670819",
+        "patient_classification": "정체도뇨관",
+        "vital_sign": "level2",
+        "consciouness": "level2",
+        "nutrition": "level3",
+        "urination": "level1",
+        "breathdegree": "level2",
+        "dailyliving": "level1"
+    }
+]
 
